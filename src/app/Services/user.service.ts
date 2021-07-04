@@ -31,12 +31,19 @@ export class UserService {
   }
 
   signIn(data: any){
-    return this.authUser.signInWithEmailAndPassword(data.email, data.password)
-      .then((result) => {
-        console.log(result);
-      }).catch((error) => {
-        window.alert(error.errors.message)
-      });
+    return new Promise(
+      (resolve, reject) => {
+        this.authUser.signInWithEmailAndPassword(data.email, data.password).then(
+          (res) => {
+            resolve(res);
+          },
+          (error) => {
+            reject(error);
+            window.alert(error.errors.message);
+          }
+        );
+      }
+    );
   }
 
   GoogleAuth() {
@@ -48,7 +55,7 @@ export class UserService {
     .then((result) => {
       console.log(result);
     }).catch((error) => {
-      window.alert(error.errors.message)
+      window.alert(error)
     })
   }
   
@@ -62,7 +69,7 @@ export class UserService {
         // const credential = result.credential;
         const user = result.user;
       }).catch((error) => {
-        window.alert(error.errors.message)
+        window.alert(error)
         
       });
   }
