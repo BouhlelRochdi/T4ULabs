@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+// import * as firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'T4ULabs';
+  constructor(){}
 }
