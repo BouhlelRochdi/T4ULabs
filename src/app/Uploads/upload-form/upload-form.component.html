@@ -1,0 +1,64 @@
+<div bsModal #uploadModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Upload File</h4>
+                <button type="button" class="close" (click)="uploadModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div *ngIf="currentUpload">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-animated"></div>
+                    </div>
+                    progress : {{ currentUpload?.name }} | {{ currentUpload?.progress }}
+                </div>
+
+                <div class="app-body">
+                    <form *ngIf="uploadForm" [formGroup]="uploadForm">
+                        <div class="row">
+                            <div class="mb-3">
+                                <input type="file" (change)="showPreview($event)">
+                            </div>
+                            <div class="row mb-3">
+                                <button class="btn btn-primary" (click)="uploadFile()"
+                                    [disabled]="!selectedFile">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-block btn-success">
+                    <i class="fa fa-save"></i> Save</button>
+                <button type="button" class="btn btn-secondary btn-block text-white" (click)="uploadModal.hide()">
+                    <i class="fa fa-close"></i> Close</button>
+            </div>
+
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Search ..." />
+        </div>
+    </div>
+
+    <div class="col-md-4 offset-md-3">
+        <button type="button" class="btn btn-danger" data-toggle="modal" (click)="uploadModal.show()">
+            <i class="fa fa-plus"></i> Upload video
+        </button>
+    </div>
+</div>
