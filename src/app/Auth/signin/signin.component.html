@@ -1,0 +1,63 @@
+<div class="col-md-8 mx-auto">
+  <form *ngIf="signInForm" [formGroup]="signInForm">
+    <div class="card-group">
+      <div class="card p-4">
+        <div class="card-body">
+          <p class="text-muted">Login in to your account</p>
+
+
+          <div class="form-group mb-3">
+
+
+            <label for="email"> Email Adress </label>
+            <input type="text" class="form-control" formControlName="email"
+              id="email"
+              [ngClass]="{'is-valid': submited && signInForm.controls.email.valid, 'is-invalid': submited && signInForm.controls.email.invalid}">
+            <div *ngIf="signInForm.controls.email.errors" class="invalid-feedback d-block">
+              <div *ngIf="signInForm.controls.email.errors.required && submited">
+                Email is required ..
+              </div>
+              <div *ngIf="signInForm.controls.email.errors.email && submited">
+                Email Format is required ..
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group mb-4">
+            <div class="input-group-prepend">
+              <label for="password">Password</label>
+            </div>
+            <input type="password" class="form-control"
+              formControlName="password" id="password"
+              [ngClass]="{'is-valid': submited && signInForm.controls.password.valid, 'is-invalid': submited && signInForm.controls.password.invalid}">
+            <div *ngIf="signInForm.controls.password.errors" class="invalid-feedback d-block">
+              <div *ngIf="signInForm.controls.password.errors.required && submited">
+                Password is required ..
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row mb-3">
+            <button type="button" class="btn btn-info block" (click)="verify()">Login</button>
+          </div>
+          <div class="row mb-3">
+            <button type="button" class="btn btn-danger btn-block" (click)="GoogleSignIn()">Connect with Google</button>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-8 text-right">
+              Don't have an account? <a routerLink="/auth/signup">Register Now!</a>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
